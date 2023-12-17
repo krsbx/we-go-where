@@ -2,6 +2,8 @@ import env from '@/utils/env';
 import { serve } from '@hono/node-server';
 import { Hono } from 'hono';
 import { AddressInfo } from 'node:net';
+import mongodb from './bin/mongodb';
+import { root } from './utils/root';
 
 const port = env.PORT;
 
@@ -13,12 +15,18 @@ function onListening(info: AddressInfo) {
   console.log(`🔥 Listening request on port ${info.port}`);
 }
 
-serve(
-  {
-    port,
-    fetch: app.fetch,
-  },
-  onListening
-);
+async function main() {
+  await mongodb;
 
-export default app;
+  root(app);
+
+  serve(
+    {
+      port,
+      fetch: app.fetch,
+    },
+    onListening
+  );
+}
+
+main();
