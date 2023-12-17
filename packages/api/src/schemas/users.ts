@@ -25,3 +25,19 @@ export const signInSchema = z
       path: ['email', 'username'],
     });
   });
+
+export const changePasswordSchema = z
+  .object({
+    oldPassword: z.string().min(5),
+    newPassword: z.string().min(5),
+    confirmPassword: z.string().min(5),
+  })
+  .superRefine((data, ctx) => {
+    if (data.newPassword !== data.confirmPassword) {
+      ctx.addIssue({
+        code: 'custom',
+        message: 'Passwords do not match',
+        path: ['confirmPassword'],
+      });
+    }
+  });
