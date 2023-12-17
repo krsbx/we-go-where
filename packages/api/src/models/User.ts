@@ -37,7 +37,7 @@ type BaseUser = {
 };
 
 export type AuthedUser = BaseUser & {
-  _id: Types.ObjectId;
+  _id: string;
 };
 
 const UserModel = mongoose.model<BaseUser>('User', userSchema);

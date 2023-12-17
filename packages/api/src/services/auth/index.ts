@@ -1,10 +1,26 @@
 import RequestError from '@/errors/RequestError';
 import UserModel, { AuthedUser } from '@/models/User';
-import { signInSchema } from '@/schemas/users';
+import { changePasswordSchema, signInSchema } from '@/schemas/users';
+import { hashText } from '@/utils/hashing';
 import { signJwtToken, verifyJwtToken } from '@/utils/jwt';
 import _ from 'lodash';
+import { getUserByUserId } from '../users';
 import { validateUserEntity } from '../users/helper';
 import { compareUserPassword } from './helper';
+
+export async function authorizeUser(token: string | undefined) {
+  if (!token) {
+    throw new RequestError({
+      message: 'Unauthorized',
+      statusCode: 401,
+      errors: null,
+    });
+  }
+
+  const user = verifyJwtToken<AuthedUser>(token);
+
+  return user;
+}
 
 export async function signInUser(payload: unknown) {
   const body = signInSchema.parse(payload);
@@ -26,16 +42,16 @@ export async function signInUser(payload: unknown) {
   return token;
 }
 
-export async function authorizeUser(token: string | undefined) {
-  if (!token) {
-    throw new RequestError({
-      message: 'Unauthorized',
-      statusCode: 401,
-      errors: null,
-    });
-  }
+export async function changePassword(payload: unknown, authedUser: AuthedUser) {
+  const body = changePasswordSchema.parse(payload);
 
-  const user = verifyJwtToken<AuthedUser>(token);
+  const user = await getUserByUserId(authedUser._id);
 
-  return user;
+  await compareUserPassword(user, {
+    password: body.oldPassword,
+  });
+
+  user.password = await hashText(body.newPassword);
+
+  await user.save();
 }
