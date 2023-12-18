@@ -12,7 +12,7 @@ type Params = {
   isError?: boolean;
 };
 
-const useDateTimeStyle = ({
+function useDateTimeStyle({
   containerStyle,
   inputStyle,
   disabled,
@@ -20,7 +20,7 @@ const useDateTimeStyle = ({
   placeholder,
   isValid,
   isError,
-}: Params) => {
+}: Params) {
   const style = useMemo(() => {
     const inputStyles: StyleProp<ViewStyle>[] = [INPUTS.DATE_TIME];
     const textStyles: StyleProp<TextStyle>[] = [LABELS.DATE_TIME];
@@ -45,6 +45,6 @@ const useDateTimeStyle = ({
   ]);
 
   return style;
-};
+}
 
 export default useDateTimeStyle;

@@ -5,7 +5,7 @@ import { SignIn, SignUp } from '../screens/auth';
 
 const Stack = createStackNavigator<AuthStackParam>();
 
-const AuthStack = () => {
+function AuthStack() {
   return (
     <Stack.Navigator
       initialRouteName={AUTH_STACK.SIGN_IN}
@@ -17,6 +17,6 @@ const AuthStack = () => {
       <Stack.Screen name={AUTH_STACK.SIGN_UP} component={SignUp} />
     </Stack.Navigator>
   );
-};
+}
 
 export default AuthStack;

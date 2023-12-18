@@ -8,10 +8,11 @@ import {
 import Launch from '../screens/Launch';
 import { COLOR_PALETTE } from '../utils/theme';
 import AuthStack from './AuthStack';
+import MainStack from './MainStack';
 
 const Stack = createStackNavigator<LauncherStackParam>();
 
-const LauncherStack = () => {
+function LauncherStack() {
   return (
     <React.Fragment>
       <StatusBar
@@ -27,9 +28,10 @@ const LauncherStack = () => {
       >
         <Stack.Screen name={LAUNCHER_STACK.LAUNCH} component={Launch} />
         <Stack.Screen name={LAUNCHER_STACK.AUTH} component={AuthStack} />
+        <Stack.Screen name={LAUNCHER_STACK.MAIN} component={MainStack} />
       </Stack.Navigator>
     </React.Fragment>
   );
-};
+}
 
 export default LauncherStack;

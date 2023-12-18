@@ -13,8 +13,6 @@ export async function signIn(payload: SignInSchema) {
 
   const { data } = await axios.post<{ token: string }>('/auth/signin', body);
 
-  console.log(data);
-
   const decoded = jwtDecode<AuthState>(data.token);
 
   const result = {

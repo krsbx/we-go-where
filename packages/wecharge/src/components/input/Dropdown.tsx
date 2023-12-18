@@ -9,14 +9,14 @@ import { ERRORS, INPUTS, LABELS } from '../../styles';
 import { COLOR_PALETTE, opacityColor } from '../../utils/theme';
 import RequiredLabel from '../label/RequiredLabel';
 
-const Dropdown = <T,>({
+function Dropdown<T>({
   label,
   isRequired,
   isError,
   isValid,
   errorMessage,
   ...props
-}: Props<T>) => {
+}: Props<T>) {
   const styles = useMemo(() => {
     const styles: StyleProp<ViewStyle>[] = [style.style];
 
@@ -43,7 +43,7 @@ const Dropdown = <T,>({
       )}
     </View>
   );
-};
+}
 
 const style = StyleSheet.create({
   container: {
