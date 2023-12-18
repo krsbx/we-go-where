@@ -1,4 +1,4 @@
-import { type User } from '@/models/User';
+import { type AuthedUser } from '@/models/User';
 import { type UserEnv } from '@/routes/users';
 import { getPageLimit } from '@/services/setup';
 import {
@@ -14,7 +14,7 @@ export function prepareUserMw(ctx: Context<UserEnv, '/users'>, next: Next) {
   const { page, limit, offset } = getPageLimit(ctx.req.query());
 
   ctx.set('auth', {
-    user: {} as User,
+    user: {} as AuthedUser,
   });
 
   ctx.set('pending', {
