@@ -1,4 +1,4 @@
-import { StackActions, useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import { Text } from '@rneui/base';
 import { AxiosError } from 'axios';
 import { Formik, FormikHelpers } from 'formik';
@@ -21,10 +21,13 @@ import {
   AUTH_STACK,
   AuthStackScreenNavigation,
 } from '../../constants/screens/auth';
-import { LAUNCHER_STACK } from '../../constants/screens/launcher';
-import { MAIN_STACK } from '../../constants/screens/main';
 import useAuthFormAnimation from '../../hooks/useAuthFormAnimation';
-import { SignInSchema, formikSignInSchema } from '../../schemas/auth';
+import {
+  SignInPayload,
+  SignInSchema,
+  formikSignInSchema,
+} from '../../schemas/auth';
+import { signIn } from '../../store/actions/auth';
 import { CONTAINERS, LABELS } from '../../styles';
 import { handleSignInError } from '../../utils/errors/auth';
 import { COLOR_PALETTE } from '../../utils/theme';
@@ -40,17 +43,14 @@ function SignIn() {
   }, [navigation]);
 
   const onSubmit = useCallback(
-    async (values: SignInSchema, formikHelper: FormikHelpers<SignInSchema>) => {
+    async (
+      values: SignInPayload,
+      formikHelper: FormikHelpers<SignInSchema>
+    ) => {
       try {
         setIsSubmitting(true);
 
-        console.log(values);
-
-        navigation.dispatch(
-          StackActions.replace(LAUNCHER_STACK.MAIN, {
-            screen: MAIN_STACK.CARDS,
-          })
-        );
+        await signIn(values);
       } catch (error) {
         if (error instanceof AxiosError) {
           handleSignInError(error, formikHelper);
@@ -59,7 +59,7 @@ function SignIn() {
         setIsSubmitting(false);
       }
     },
-    [navigation]
+    []
   );
 
   return (

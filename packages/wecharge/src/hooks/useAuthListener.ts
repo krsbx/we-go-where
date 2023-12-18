@@ -4,8 +4,10 @@ import {
   LAUNCHER_STACK,
   LauncherStackScreenNavigation,
 } from '../constants/screens/launcher';
+import useAuthStore from '../store/state/auth';
 
 function useAuthListener(isCallable: boolean) {
+  const auth = useAuthStore((state) => state.auth);
   const navigation =
     useNavigation<LauncherStackScreenNavigation<typeof LAUNCHER_STACK.AUTH>>();
 
@@ -20,10 +22,13 @@ function useAuthListener(isCallable: boolean) {
   useEffect(() => {
     if (!isCallable) return;
 
-    navigateToLogin();
+    if (!auth._id) {
+      navigateToLogin();
+      return;
+    }
 
-    // navigateToMain();
-  }, [isCallable, navigateToLogin, navigateToMain]);
+    navigateToMain();
+  }, [auth._id, isCallable, navigateToLogin, navigateToMain]);
 }
 
 export default useAuthListener;

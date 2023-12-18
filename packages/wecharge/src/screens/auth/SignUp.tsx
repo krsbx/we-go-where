@@ -24,6 +24,7 @@ import {
   AuthStackScreenNavigation,
 } from '../../constants/screens/auth';
 import useAuthFormAnimation from '../../hooks/useAuthFormAnimation';
+import { signUp } from '../../store/actions/auth';
 import { CONTAINERS, LABELS } from '../../styles';
 import { handleSignUpError } from '../../utils/errors/auth';
 import { COLOR_PALETTE } from '../../utils/theme';
@@ -48,7 +49,7 @@ function SignUp() {
       try {
         setIsSubmitting(true);
 
-        console.log(values);
+        await signUp(values);
 
         onPressOnSignIn();
       } catch (error) {

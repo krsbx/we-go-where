@@ -1,6 +1,6 @@
-import { SignInSchema, SignUpSchema } from '../schemas/auth';
+import { SignInPayload, SignUpSchema } from '../schemas/auth';
 
-export const SIGN_IN_VALUE: SignInSchema = {
+export const SIGN_IN_VALUE: SignInPayload = {
   identifier: '',
   password: '',
 };
