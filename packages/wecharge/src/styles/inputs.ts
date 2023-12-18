@@ -6,22 +6,22 @@ import { DEFAULT_TEXT } from './labels';
 
 export const DEFAULT_PADDING = flattenStyle({
   marginHorizontal: 0,
-  paddingVertical: scale(5),
+  paddingVertical: scale(7.5),
   paddingHorizontal: scale(10),
 });
 
 export const INPUT = flattenStyle({
   ...DEFAULT_PADDING,
   ...DEFAULT_TEXT,
-  borderRadius: scale(12),
+  borderRadius: scale(5),
   borderWidth: scale(1),
-  borderColor: COLOR_PALETTE.NEUTRAL_50,
+  borderColor: COLOR_PALETTE.NEUTRAL_40,
   color: COLOR_PALETTE.BLACK,
 });
 
 export const DISABLED = flattenStyle({
   borderColor: COLOR_PALETTE.NEUTRAL_60,
-  backgroundColor: COLOR_PALETTE.NEUTRAL_40,
+  backgroundColor: COLOR_PALETTE.NEUTRAL_50,
   opacity: 0.5,
 });
 

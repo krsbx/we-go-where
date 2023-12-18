@@ -54,6 +54,9 @@ export const COLOR_PALETTE = {
     return this.NEUTRAL_70;
   },
 
+  // LIME
+  LIME: '#4AD8DA',
+
   // BLUE
   BLUE_10: '#4AA5F0',
   BLUE_20: '#3D9FEF',

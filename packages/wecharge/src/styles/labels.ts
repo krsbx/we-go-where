@@ -11,6 +11,7 @@ export const DEFAULT_TEXT = flattenStyle({
 export const REQUIRED_LABEL = flattenStyle({
   ...DEFAULT_TEXT,
   lineHeight: scale(FONT_SIZE.EXTRA_SMALL + 1.5),
+  fontWeight: '700',
 });
 
 export const PLACEHOLDER = flattenStyle({
