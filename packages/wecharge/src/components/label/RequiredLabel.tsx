@@ -10,12 +10,7 @@ type Props = TextProps & {
   requiredStyle?: StyleProp<TextStyle>;
 };
 
-const RequiredLabel = ({
-  isRequired,
-  style,
-  requiredStyle,
-  ...props
-}: Props) => {
+function RequiredLabel({ isRequired, style, requiredStyle, ...props }: Props) {
   const textStyle = useMemo(() => {
     const textStyles: StyleProp<TextStyle>[] = [LABELS.REQUIRED_LABEL];
 
@@ -38,7 +33,7 @@ const RequiredLabel = ({
       {isRequired && <Text style={starStyle}>*</Text>}
     </View>
   );
-};
+}
 
 const inlineStyle = flattenStyle({
   display: 'flex',

@@ -10,13 +10,13 @@ type Props = {
   children?: JSX.Element;
 };
 
-const LeftRightIconWrapper = ({
+function LeftRightIconWrapper({
   leftIcon,
   leftIconContainerStyle,
   rightIcon,
   rightIconContainerStyle,
   children,
-}: Props) => {
+}: Props) {
   return (
     <React.Fragment>
       {leftIcon && (
@@ -32,6 +32,6 @@ const LeftRightIconWrapper = ({
       )}
     </React.Fragment>
   );
-};
+}
 
 export default LeftRightIconWrapper;

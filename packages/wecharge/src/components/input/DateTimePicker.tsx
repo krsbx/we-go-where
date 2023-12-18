@@ -15,7 +15,7 @@ import { ERRORS } from '../../styles';
 import RequiredLabel from '../label/RequiredLabel';
 import LeftRightIconWrapper from '../wrapper/LeftRightIconWrapper';
 
-const DateTimePicker = ({
+function DateTimePicker({
   value,
   placeholder,
   label,
@@ -35,7 +35,7 @@ const DateTimePicker = ({
   errorMessage,
   errorStyle: errorStyleProps,
   ...props
-}: Props) => {
+}: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const date = useMemo(() => {
     if (typeof value === 'string' && !_.isEmpty(value)) return new Date(value);
@@ -140,7 +140,7 @@ const DateTimePicker = ({
       />
     </React.Fragment>
   );
-};
+}
 
 type Props = Omit<DatePickerProps, 'open' | 'onCancel' | 'date'> & {
   value?: Date | string | null;

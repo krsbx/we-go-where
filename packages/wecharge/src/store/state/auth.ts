@@ -14,12 +14,11 @@ export type AuthState = {
 
 export type AuthStore = {
   auth: AuthState;
-  setAuth: (
-    value: AuthState | ((prev: AuthState) => Partial<AuthState>)
-  ) => void;
+  setAuth(value: AuthState | ((prev: AuthState) => Partial<AuthState>)): void;
+  resetAuth(): void;
 };
 
-export const authInitialState: AuthState = {
+export const initialAuth: AuthState = {
   _id: '',
   email: '',
   avatar: null,
@@ -32,7 +31,7 @@ export const authInitialState: AuthState = {
 const useAuthStore = create(
   persist<AuthStore>(
     (set, get) => ({
-      auth: authInitialState,
+      auth: initialAuth,
       setAuth(value) {
         const prevValue = get().auth;
 
@@ -49,6 +48,11 @@ const useAuthStore = create(
 
         set({
           auth: value,
+        });
+      },
+      resetAuth() {
+        set({
+          auth: initialAuth,
         });
       },
     }),

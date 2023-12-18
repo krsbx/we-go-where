@@ -1,4 +1,4 @@
-import { useNavigation } from '@react-navigation/native';
+import { StackActions, useNavigation } from '@react-navigation/native';
 import { Text } from '@rneui/base';
 import { AxiosError } from 'axios';
 import { Formik, FormikHelpers } from 'formik';
@@ -21,6 +21,8 @@ import {
   AUTH_STACK,
   AuthStackScreenNavigation,
 } from '../../constants/screens/auth';
+import { LAUNCHER_STACK } from '../../constants/screens/launcher';
+import { MAIN_STACK } from '../../constants/screens/main';
 import useAuthFormAnimation from '../../hooks/useAuthFormAnimation';
 import {
   SignInPayload,
@@ -51,6 +53,12 @@ function SignIn() {
         setIsSubmitting(true);
 
         await signIn(values);
+
+        navigation.dispatch(
+          StackActions.replace(LAUNCHER_STACK.MAIN, {
+            screen: MAIN_STACK.CARDS,
+          })
+        );
       } catch (error) {
         if (error instanceof AxiosError) {
           handleSignInError(error, formikHelper);
@@ -59,7 +67,7 @@ function SignIn() {
         setIsSubmitting(false);
       }
     },
-    []
+    [navigation]
   );
 
   return (
