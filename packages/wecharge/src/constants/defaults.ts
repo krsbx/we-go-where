@@ -1,4 +1,5 @@
 import { SignInPayload, SignUpSchema } from '../schemas/auth';
+import { CreditCardSchema } from '../schemas/card';
 
 export const SIGN_IN_VALUE: SignInPayload = {
   identifier: '',
@@ -10,4 +11,11 @@ export const SIGN_UP_VALUE: SignUpSchema = {
   email: '',
   username: '',
   password: '',
+};
+
+export const CREDIT_CARD_VALUE: CreditCardSchema = {
+  cardHolder: '',
+  number: '',
+  expiryDate: '',
+  cvv: '',
 };

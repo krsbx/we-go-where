@@ -120,6 +120,9 @@ function SignIn() {
                   disabled={!isEmpty(errors)}
                   onPress={handleSubmit as never}
                   loading={isSubmitting}
+                  containerStyle={{
+                    width: '95%',
+                  }}
                 />
               </View>
             </KeyboardAvoidingView>
@@ -145,7 +148,7 @@ const styles = StyleSheet.create({
     gap: scale(5),
   },
   signUpText: {
-    color: COLOR_PALETTE.BLUE_40,
+    color: COLOR_PALETTE.LIME,
     fontWeight: 'bold',
   },
 });

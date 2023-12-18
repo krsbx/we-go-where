@@ -22,11 +22,12 @@ export const RIGHT_ICON = flattenStyle({
 });
 
 export const RIGHT_ICON_ICON = flattenStyle({
-  borderColor: COLOR_PALETTE.NEUTRAL_50,
+  borderColor: COLOR_PALETTE.NEUTRAL_40,
   borderWidth: 1,
   borderLeftWidth: 0,
-  borderTopRightRadius: scale(12),
-  borderBottomRightRadius: scale(12),
+  borderTopRightRadius: scale(5),
+  borderBottomRightRadius: scale(5),
+  height: scale(41),
   padding: scale(5),
 });
 
@@ -37,11 +38,12 @@ export const LEFT_ICON = flattenStyle({
 });
 
 export const LEFT_ICON_ICON = flattenStyle({
-  borderColor: COLOR_PALETTE.NEUTRAL_50,
+  borderColor: COLOR_PALETTE.NEUTRAL_40,
   borderWidth: 1,
   borderRightWidth: 0,
-  borderTopLeftRadius: scale(12),
-  borderBottomLeftRadius: scale(12),
+  borderTopLeftRadius: scale(5),
+  borderBottomLeftRadius: scale(5),
+  height: scale(41),
   padding: scale(5),
 });
 
