@@ -1,38 +1,21 @@
 import { Text } from '@rneui/base';
-import React, { useMemo } from 'react';
-import { TouchableOpacity, View } from 'react-native';
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
 import { scale } from 'react-native-size-matters';
 import { CardState } from '../../../store/state/card';
-import { MasterCard, Visa } from '../../svg';
-import { Placeholder } from './common';
+import { CardIcon, Placeholder } from './common';
 import { style } from './style';
 
-type Props = CardState & {
-  onPress?: () => void;
-};
-
-function UserCard({
-  cardType,
+function CardPreview({
   lastFour,
   cardHolder,
   expiryDate,
-  onPress,
-}: Props) {
-  const CardIcon = useMemo(() => {
-    switch (cardType) {
-      case 'visa':
-        return Visa;
-
-      case 'mastercard':
-      default:
-        return MasterCard;
-    }
-  }, [cardType]);
-
+  cardType,
+}: CardState) {
   return (
-    <TouchableOpacity style={style.cardContainer} onPress={onPress}>
-      <View style={style.cardInnerContainer}>
-        <CardIcon width={scale(50)} height={scale(30)} />
+    <View style={[style.cardContainer, extraStyle.cardContainer]}>
+      <View style={[style.cardInnerContainer, extraStyle.cardInnerContainer]}>
+        <CardIcon cardType={cardType} width={scale(50)} height={scale(30)} />
         <View style={style.cardNumber}>
           <Placeholder />
           <Text style={style.lastFour}>{lastFour}</Text>
@@ -48,8 +31,18 @@ function UserCard({
           </View>
         </View>
       </View>
-    </TouchableOpacity>
+    </View>
   );
 }
 
-export default UserCard;
+const extraStyle = StyleSheet.create({
+  cardContainer: {
+    padding: scale(10),
+    minHeight: scale(150),
+  },
+  cardInnerContainer: {
+    width: '100%',
+  },
+});
+
+export default CardPreview;

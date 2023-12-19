@@ -84,7 +84,6 @@ function SignUp() {
             <KeyboardAvoidingView style={{ flex: 1 }}>
               <ScrollView style={{ flex: 1 }}>
                 <InputField
-                  isRequired
                   label={'E-mail'}
                   errorMessage={errors.email}
                   onChangeText={handleChange('email')}
@@ -95,7 +94,6 @@ function SignUp() {
                   value={values.email}
                 />
                 <InputField
-                  isRequired
                   label={'Username'}
                   errorMessage={errors.username}
                   onChangeText={handleChange('username')}
@@ -106,7 +104,6 @@ function SignUp() {
                   value={values.username}
                 />
                 <InputField
-                  isRequired
                   label={'Password'}
                   errorMessage={errors.password}
                   onChangeText={handleChange('password')}
