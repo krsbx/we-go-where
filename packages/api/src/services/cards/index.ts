@@ -135,8 +135,6 @@ export async function getCardInfo(card: Card | null, authedUser: AuthedUser) {
   try {
     result = await Omise.tokens.retrieve(card.cardToken);
 
-    console.log(await Omise.customers.listCards(card.customerId));
-
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (err: any) {
     result = new RequestError({
