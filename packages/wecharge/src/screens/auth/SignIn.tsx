@@ -91,7 +91,6 @@ function SignIn() {
             <KeyboardAvoidingView style={{ flex: 1 }}>
               <ScrollView style={{ flex: 1 }}>
                 <InputField
-                  isRequired
                   label={'E-mail/Username'}
                   errorMessage={errors.identifier}
                   onChangeText={handleChange('identifier')}
@@ -102,7 +101,6 @@ function SignIn() {
                   value={values.identifier}
                 />
                 <InputField
-                  isRequired
                   label={'Password'}
                   errorMessage={errors.password}
                   onChangeText={handleChange('password')}

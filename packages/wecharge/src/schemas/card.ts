@@ -1,3 +1,4 @@
+import { createNumberMask } from 'react-native-mask-input';
 import { z } from 'zod';
 import { toFormikValidationSchema } from 'zod-formik-adapter';
 
@@ -46,3 +47,30 @@ export type CreditCardSchema = z.infer<typeof creditCardSchema>;
 
 export const formikCreditCardSchema =
   toFormikValidationSchema(creditCardSchema);
+
+export const chargeSchema = z.object({
+  amount: z.string().refine((amount) => {
+    const parsedAmount = parseInt(amount.trim().replaceAll(' ', ''), 10);
+
+    if (Number.isNaN(parsedAmount)) return false;
+    if (parsedAmount < 2000) return false;
+    if (parsedAmount > 10_000_00) return false;
+
+    return true;
+  }, 'Invalid amount'),
+  currency: z
+    .string()
+    .default('THB')
+    .transform((value) => value.toUpperCase()),
+});
+
+export type ChargeSchema = z.infer<typeof chargeSchema>;
+
+export const formikChargeSchema = toFormikValidationSchema(chargeSchema);
+
+export const currencyMask = createNumberMask({
+  prefix: ['฿', ' '],
+  separator: ',',
+  delimiter: '.',
+  precision: 2,
+});

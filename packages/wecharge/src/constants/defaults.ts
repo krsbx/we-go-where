@@ -1,5 +1,5 @@
 import { SignInPayload, SignUpSchema } from '../schemas/auth';
-import { CreditCardSchema } from '../schemas/card';
+import { ChargeSchema, CreditCardSchema } from '../schemas/card';
 
 export const SIGN_IN_VALUE: SignInPayload = {
   identifier: '',
@@ -18,4 +18,9 @@ export const CREDIT_CARD_VALUE: CreditCardSchema = {
   number: '',
   expiryDate: '',
   cvv: '',
+};
+
+export const CHARGE_VALUE: ChargeSchema = {
+  amount: '',
+  currency: 'THB',
 };

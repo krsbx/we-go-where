@@ -15,6 +15,7 @@ import { scale } from 'react-native-size-matters';
 import BaseButton from '../../components/button/BaseButton';
 import InputField from '../../components/input/InputField';
 import { Header } from '../../components/screens/main';
+import CardIcon from '../../components/screens/main/CardIcon';
 import {
   SecureMasterCard,
   SecureOmise,
@@ -31,6 +32,7 @@ import {
   expiryDateMask,
   formikCreditCardSchema,
 } from '../../schemas/card';
+import { addCard } from '../../store/actions/card';
 import { handleCreationError } from '../../utils/errors/common';
 import { COLOR_PALETTE } from '../../utils/theme';
 
@@ -51,7 +53,7 @@ function AddCard() {
       try {
         setIsSubmitting(true);
 
-        console.log(values);
+        await addCard(values);
 
         onBack();
       } catch (error) {
@@ -91,9 +93,10 @@ function AddCard() {
                 onBlur={handleBlur('number')}
                 isValid={touched.number && !errors.number}
                 isError={touched.number && !!errors.number}
-                placeholder={'0000 0000 0000'}
+                placeholder={'0000 0000 0000 0000'}
                 mask={Masks.CREDIT_CARD}
                 value={values.number}
+                rightIcon={<CardIcon />}
               />
               <InputField
                 label={'Name on Card'}

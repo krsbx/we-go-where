@@ -1,12 +1,24 @@
+import { useNavigation } from '@react-navigation/native';
 import { Text } from '@rneui/base';
-import React from 'react';
+import React, { useCallback } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { scale } from 'react-native-size-matters';
 import { FONT_SIZE, FONT_SIZE_TYPE } from '../../../constants/fonts';
+import {
+  MAIN_STACK,
+  MainStackScreenNavigation,
+} from '../../../constants/screens/main';
 import { COLOR_PALETTE } from '../../../utils/theme';
 
 function EmptyCard() {
+  const navigation =
+    useNavigation<MainStackScreenNavigation<typeof MAIN_STACK.CARDS>>();
+
+  const onAddCard = useCallback(() => {
+    navigation.push(MAIN_STACK.ADD_CARD);
+  }, [navigation]);
+
   return (
     <View style={style.mainContainer}>
       <View style={style.emptyCardContainer}>
@@ -15,7 +27,7 @@ function EmptyCard() {
         <Text style={style.noCardText}>
           We recommend adding a card for easy payment
         </Text>
-        <TouchableOpacity style={style.addCardContainer}>
+        <TouchableOpacity style={style.addCardContainer} onPress={onAddCard}>
           <Text style={style.addCardText}>Add New Card</Text>
         </TouchableOpacity>
       </View>
