@@ -5,6 +5,7 @@ import {
   createCard,
   deleteCard,
   getCardByCardId,
+  getCardInfo,
   getCreditCards,
 } from '@/services/cards';
 import { getPageLimit } from '@/services/setup';
@@ -94,9 +95,13 @@ export async function deleteCardMw(ctx: Context<CardEnv, '/:cardId'>) {
 export async function chargeCardMw(ctx: Context<CardEnv, '/:cardId'>) {
   const body = await ctx.req.json();
 
-  await chargeCard(body, ctx.get('result').card, ctx.get('auth').user);
+  const charge = await chargeCard(
+    body,
+    ctx.get('result').card,
+    ctx.get('auth').user
+  );
 
-  return ctx.body(null, 204);
+  return ctx.json(charge);
 }
 
 export async function returnCardMw(ctx: Context<CardEnv, '/:cardId'>) {
@@ -104,6 +109,15 @@ export async function returnCardMw(ctx: Context<CardEnv, '/:cardId'>) {
   const statusCode = result ? 200 : 404;
 
   return ctx.json(result, statusCode);
+}
+
+export async function returnCardInfoMw(ctx: Context<CardEnv, '/:cardId'>) {
+  const cardInfo = await getCardInfo(
+    ctx.get('result').card,
+    ctx.get('auth').user
+  );
+
+  return ctx.json(cardInfo);
 }
 
 export async function returnCardsMw(ctx: Context<CardEnv, '/'>) {

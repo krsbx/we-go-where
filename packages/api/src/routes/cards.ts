@@ -6,6 +6,7 @@ import {
   getCardByCardIdMw,
   getCardsMw,
   prepareCardMw,
+  returnCardInfoMw,
   returnCardMw,
   returnCardsMw,
 } from '@/controllers/cards';
@@ -51,8 +52,11 @@ router.get('/', getCardsMw, returnCardsMw);
 // GET /cards/:cardId
 router.get('/:cardId', getCardByCardIdMw, returnCardMw);
 
-// POST /cards/:cardId/charge
-router.post('/:cardId/charge', getCardByCardIdMw, chargeCardMw);
+// POST /cards/:cardId/charges
+router.post('/:cardId/charges', getCardByCardIdMw, chargeCardMw);
+
+// POST /cards/:cardId/info
+router.get('/:cardId/info', getCardByCardIdMw, returnCardInfoMw);
 
 // DELETE /cards/:cardId
 router.delete('/:cardId', getCardByCardIdMw, deleteCardMw);

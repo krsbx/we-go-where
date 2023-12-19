@@ -29,6 +29,10 @@ const cardSchema = new mongoose.Schema({
     required: true,
     type: String,
   },
+  cardId: {
+    required: true,
+    type: String,
+  },
 });
 
 type BaseCard = {
@@ -36,7 +40,8 @@ type BaseCard = {
   expiryDate: string;
   cardType: string | null;
   lastFour: string;
-  userId: string;
+  cardId: string;
+  userId: Types.ObjectId;
   customerId: string;
   cardToken: string;
   createdAt: Date;
