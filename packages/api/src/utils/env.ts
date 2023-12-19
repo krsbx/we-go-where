@@ -37,6 +37,7 @@ const envSchema = z
     MONGO_URI: z.string().default(''),
 
     OMISE_SECRET_KEY: z.string(),
+    OMISE_PUBLIC_KEY: z.string(),
     OMISE_VERSION: z.string(),
 
     NODE_ENV: z.string().default(''),

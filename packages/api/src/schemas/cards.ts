@@ -39,9 +39,6 @@ export const createSchema = z.object({
     .refine((value) => value.match(expiryDateRegex), {
       message: 'Invalid CVV',
     }),
-  cardToken: z.string(),
-  cardType: z.string(),
-  lastFour: z.string().length(4),
 });
 
 export const chargeSchema = z.object({

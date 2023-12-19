@@ -13,7 +13,7 @@ export function validateCardEntity(card: Card | null): asserts card is Card {
 }
 
 export function validateUserCardAccess(card: Card, accesor: AuthedUser) {
-  if (card.userId === accesor._id) return;
+  if (card.userId.toString() === accesor._id) return;
 
   throw new RequestError({
     message: 'Forbidden',
